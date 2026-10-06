@@ -1,0 +1,17 @@
+Rose photography — Unsplash (free to use, no attribution required).
+Downloaded October 2026, stored locally in public/roses/:
+
+- hero-red.jpg — Red rose macro with dew
+  https://unsplash.com (photo-1496062031456-07b8f162a322)
+- story-pink.jpg — Blush pink rose in glass vase
+  https://unsplash.com (photo-1518895949257-7621c3c786d7)
+- rose-bed.jpg — Bed of red roses
+  https://unsplash.com (photo-1494972308805-463bc619d34e)
+- bouquet-red.jpg — Red rose bouquet top-down
+  (photo-1512056495345-913a0c261dc8) — currently unused spare
+- garden-mix.jpg — Cream, blush and pink garden roses
+  https://unsplash.com (photo-1591886960571-74d43a9d4166)
+- coral.jpg — Coral garden roses in vase
+  https://unsplash.com (photo-1533616688419-b7a585564566)
+
+Originals © their respective Unsplash photographers.

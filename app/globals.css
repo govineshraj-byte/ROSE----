@@ -1,26 +1,187 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffbf5;
+  --foreground: #2b2320;
+  --card: #ffffff;
+  --card-foreground: #2b2320;
+  --popover: #ffffff;
+  --popover-foreground: #2b2320;
+  --primary: #a62639;
+  --primary-foreground: #fff8f2;
+  --secondary: #f6e7df;
+  --secondary-foreground: #5c3a3a;
+  --muted: #f9ece5;
+  --muted-foreground: #7c6a63;
+  --accent: #b98a2f;
+  --accent-foreground: #fffbf5;
+  --sage: #7d8b74;
+  --blush: #f3d3cb;
+  --border: #ecd9cf;
+  --input: #ecd9cf;
+  --ring: #a62639;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: #141010;
+  --foreground: #f5ede6;
+  --card: #1e1718;
+  --card-foreground: #f5ede6;
+  --popover: #1e1718;
+  --popover-foreground: #f5ede6;
+  --primary: #e0788a;
+  --primary-foreground: #20090e;
+  --secondary: #332024;
+  --secondary-foreground: #e9c9c2;
+  --muted: #241b1d;
+  --muted-foreground: #b89f99;
+  --accent: #d4af6a;
+  --accent-foreground: #1c1206;
+  --sage: #9aa88f;
+  --blush: #4a2b31;
+  --border: #3a2a2d;
+  --input: #3a2a2d;
+  --ring: #e0788a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Theme transitions for surfaces */
+.theme-anim,
+.theme-anim * {
+  transition:
+    background-color 0.6s ease,
+    border-color 0.6s ease,
+    color 0.5s ease,
+    fill 0.6s ease,
+    stroke 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Elegant underline nav */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Glass */
+.glass {
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+
+/* Grain overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 55%, transparent);
+  border-radius: 8px;
+  border: 2px solid var(--background);
 }
